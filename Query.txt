@@ -1,0 +1,8 @@
+SELECT c_cake as cake FROM cakes 
+INNER JOIN icings ON icings.i_icing = cakes.c_icing 
+INNER JOIN reserved_sprinkles ON reserved_sprinkles.cake = cakes.c_cake 
+INNER JOIN sprinkles ON sprinkles.s_sprinkle = reserved_sprinkles.sprinkle 
+WHERE icings.i_consumed =1 
+AND sprinkles.s_consumed = 1 
+GROUP BY reserved_sprinkles.cake HAVING COUNT(*)>2
+ORDER BY c_cake ASC;
